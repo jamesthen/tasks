@@ -1,0 +1,26 @@
+{% extends "mytasks/layout.html" %}
+
+{% block title %}
+    MyTasks
+{% endblock %}
+
+{% block body %}
+<div style="padding:20px;">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add</button>
+    </form>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task }} 
+                    <form method="POST" action="{% url 'remove_task' task.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %} 
