@@ -19,6 +19,8 @@ def index(request):
     })
 
 def remove_task(request, task_id):
-    task_id = AddTask.objects.get(id = task_id)
-    if task_id:
-        task_id.delete()
+    if request:
+        task_id = AddTask.objects.get(id = task_id)
+        if task_id:
+            task_id.delete()
+        return redirect('index')

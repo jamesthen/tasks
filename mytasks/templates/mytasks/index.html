@@ -14,11 +14,20 @@
     <ul>
         {% for task in tasks %}
             <li>
-                {{ task }} 
-                    <form method="POST" action="{% url 'remove_task' task.id %}">
-                        {% csrf_token %}
-                        <button type="submit">Remove</button>
-                    </form>
+                <table>
+                    <tr>
+                        <td style="padding:5px; margin-bottom:-5px;">
+                            <form method="POST" action="{% url 'remove_task' task.id %}">
+                                {% csrf_token %}
+                                <button type="submit">X</button>
+                            </form>
+                        </td>
+                        <td style="padding:5px; margin-bottom:-5px;">
+                            {{ task }} 
+                        </td>
+                    </tr>
+                </table>
+
             </li>
         {% endfor %}
     </ul>
