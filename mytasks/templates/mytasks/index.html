@@ -3,33 +3,30 @@
 {% block title %}
     MyTasks
 {% endblock %}
-
+{% block header %}
+    MyTasks
+{% endblock %}
 {% block body %}
 <div style="padding:20px;">
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add</button>
+        {{ form.as_table }}
+        <button class="task__button" type="submit">post</button>
     </form>
-    <ul>
-        {% for task in tasks %}
-            <li>
-                <table>
-                    <tr>
+                <table style="margin-top:25px;">
+                        {% for task in tasks %}
+                        <tr>
+                        <td style="padding:5px; margin-bottom:-5px; width:230px;">
+                            <p class="task__p">{{ task }}</h1>  
+                        </td>
                         <td style="padding:5px; margin-bottom:-5px;">
                             <form method="POST" action="{% url 'remove_task' task.id %}">
                                 {% csrf_token %}
-                                <button type="submit">X</button>
+                                <button type="submit">del</button>
                             </form>
                         </td>
-                        <td style="padding:5px; margin-bottom:-5px;">
-                            {{ task }} 
-                        </td>
                     </tr>
+                        {% endfor %}
                 </table>
-
-            </li>
-        {% endfor %}
-    </ul>
 </div>
 {% endblock %} 
