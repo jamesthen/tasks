@@ -1,4 +1,4 @@
-from .models import AddTask
+from .models import AddTask, AddGoal
 from django import forms
 
 class AddTaskForm(forms.ModelForm):
@@ -11,3 +11,8 @@ class AddTaskForm(forms.ModelForm):
         labels = {
             'task_name': ''  # Custom label for title
         }
+
+class AddGoalForm(forms.ModelForm):
+    class Meta:
+        model = AddGoal
+        fields = ['goal_name', 'description', 'due_date', 'completed']
