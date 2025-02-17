@@ -12,6 +12,7 @@
     <body>
         <div class="container">
             <h1 class="title-text">{% block header %}{% endblock %}</h1>
+            <a href="{% url 'add_goal' %}">Goals</a>
             {% block body %}
             {% endblock %}
         </div>

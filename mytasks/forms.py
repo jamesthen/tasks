@@ -16,3 +16,9 @@ class AddGoalForm(forms.ModelForm):
     class Meta:
         model = AddGoal
         fields = ['goal_name', 'description', 'due_date', 'completed']
+        widgets = {
+            'goal_name': forms.TextInput(attrs={'rows': 1, 'cols': 1, 'placeholder':'Add a new goal'}),
+            'description': forms.TextInput(attrs={'rows': 1, 'cols': 1, 'placeholder':'Description'}),
+            
+            'completed': forms.CheckboxInput,
+        }

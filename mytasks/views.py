@@ -24,15 +24,15 @@ from .models import AddTask, AddGoal
 def index(request):
     tasks = AddTask.objects.all()
     if request.method == "POST":
-        form = AddTaskForm(request.POST)
-        if form.is_valid():
-            form.save()
+        task_form = AddTaskForm(request.POST)
+        if task_form.is_valid():
+            task_form.save()
             return redirect('index')
     else:
-        form = AddTaskForm()
+        task_form = AddTaskForm()
     return render(request, "mytasks/index.html", {
-        "tasks":tasks,
-        "form":form
+        "tasks": tasks,
+        "task_form": task_form,
     })
 
 def remove_task(request, task_id):
@@ -42,11 +42,28 @@ def remove_task(request, task_id):
             task_id.delete()
         return redirect('index')
 
-def add_goal(request, goal_id):
+
+def add_goal(request):
     goals = AddGoal.objects.all()
     if request.method == "POST":
-        form = AddGoalForm(request.POST)
+        goal_form = AddGoalForm(request.POST)
+        if goal_form.is_valid():
+            goal_form.save()
+            return redirect('add_goal')
+    else:
+        goal_form = AddGoalForm()
+    return render(request, "mytasks/goals.html", {
+        "goals": goals,
+        "goal_form": goal_form,
+    })
     
+def remove_goal(request, goal_id):
+    if request:
+        goal_id = AddGoal.objects.get(id = goal_id)
+        if goal_id:
+            goal_id.delete()
+        return redirect('add_goal')
+
 
 
 def task_list(request):

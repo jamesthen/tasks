@@ -12,6 +12,10 @@ border-bottom: #bbb 1px solid;
 margin-bottom: 10px;
 }
 
+label {
+  color:#fff;
+}
+
 p {
 font-family:math;
 font-size: 16px;
